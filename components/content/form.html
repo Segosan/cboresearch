@@ -1,0 +1,64 @@
+    <!-- ======= Appointment Section ======= -->
+    <section id="appointment" class="appointment section-bg">
+        <div class="container">
+  
+          <div class="section-title">
+            <h2>Formulario de registro
+            </h2>
+            <p>Rellene el formulario de inscripción con sus datos de presentación en la conferencia. No olvide adjuntar, además del formulario de inscripción, el comprobante de pago. Si tiene alguna pregunta o necesita información adicional, no dude en ponerse en contacto con nosotros en la dirección <a href="mailto:info@cboresearch.com">info@cboresearch.com</a> o visite la página de preguntas frecuentes (FAQs)</p>
+          </div>
+  
+          <form action="forms/appointment.php" method="post" role="form" class="php-email-form">
+            <div class="row">
+              <div class="col-md-6 form-group">
+                <input type="text" name="name" class="form-control" id="name" placeholder="Nombre y apellidos" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                <div class="validate"></div>
+              </div>
+              <div class="col-md-6 form-group mt-3 mt-md-0">
+                <input type="email" class="form-control" name="email" id="email" placeholder="Tu Email" data-rule="email" data-msg="Please enter a valid email">
+                <div class="validate"></div>
+              </div>
+            
+            </div>
+            <div class="row">
+              
+              <div class="col-md-6 form-group mt-3">
+                <select name="department" id="department" class="form-select">
+                  <option value="">Registro como:</option>
+                  <option value="doctorado"> Doctorado</option>
+                  <option value="normal">Normal</option>
+                
+                </select>
+                <div class="validate"></div>
+              </div>
+              <div class="col-md-6 form-group mt-3 ">
+                <input type="text" name="name" class="form-control" id="name" placeholder="ID del resumen extendido aceptado" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                <div class="validate"></div>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group mt-3">
+                    <label>Prueba de pago</label>
+                    <input type="file">
+                    <div class="validate"></div>
+                  </div>
+           
+                <div class="col-md-6 form-group mt-3 ">
+                    <label>Prueba de estudiante</label>
+                    <input type="file">
+                    <div class="validate"></div>
+                  </div>
+            </div>
+          
+            
+            <div class="mb-3">
+              <div class="loading">Loading</div>
+              <div class="error-message"></div>
+              <div class="sent-message">El formulario se ha enviado con exito! Gracias</div>
+            </div>
+            <div class="text-center"><button type="submit">Enviar</button></div>
+          </form>
+  
+        </div>
+      </section><!-- End Appointment Section -->
+  

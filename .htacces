@@ -1,0 +1,3 @@
+RewriteEngine on
+
+RewriteRule ^index\.htm$ index.php [NC,R]

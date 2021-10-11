@@ -1856,3 +1856,7 @@ h2,h3,h4 {
 .list_ppl a img{
   width: 20px;
 }
+
+.error{
+  border: 1px solid red;
+}

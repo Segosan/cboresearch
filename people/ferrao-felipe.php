@@ -2,12 +2,12 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<?php include 'components/head.html';?>
+<?php include 'components/subpages/head.html';?>
 
 <body>
-<?php include 'components/header.html';?>
+<?php include 'components/subpages/header.html';?>
 <?php include 'components/half-hero.html';?>
 <?php include '../components/content/people/ferrao-felipe.html';?>
-<?php include 'components/footer.html';?>
-<?php include 'components/scripts.html';?>
+<?php include 'components/subpages/footer.html';?>
+<?php include 'components/subpages/scripts.html';?>
 </body>

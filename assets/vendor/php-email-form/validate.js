@@ -10,42 +10,58 @@
 
   forms.forEach( function(e) {
     e.addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      let thisForm = this;
-
-      let action = thisForm.getAttribute('action');
-      let recaptcha = thisForm.getAttribute('data-recaptcha-site-key');
-      
-      if( ! action ) {
-        displayError(thisForm, 'The form action property is not set!')
-        return;
-      }
-      thisForm.querySelector('.loading').classList.add('d-block');
-      thisForm.querySelector('.error-message').classList.remove('d-block');
-      thisForm.querySelector('.sent-message').classList.remove('d-block');
-
-      let formData = new FormData( thisForm );
-
-      if ( recaptcha ) {
-        if(typeof grecaptcha !== "undefined" ) {
-          grecaptcha.ready(function() {
-            try {
-              grecaptcha.execute(recaptcha, {action: 'php_email_form_submit'})
-              .then(token => {
-                formData.set('recaptcha-response', token);
-                php_email_form_submit(thisForm, action, formData);
-              })
-            } catch(error) {
-              displayError(thisForm, error)
-            }
-          });
-        } else {
-          displayError(thisForm, 'The reCaptcha javascript API url is not loaded!')
+      event.preventDefault()
+      //validation
+      var errors = 0;
+      e.querySelectorAll('.mandatory').forEach(function (input) {
+        
+        if(input.value == ""){
+          errors++
+          input.classList.add("error")
         }
-      } else {
-        php_email_form_submit(thisForm, action, formData);
+        else{
+          input.classList.remove("error")
+        }
+      }) 
+      if(errors == 0){
+        let thisForm = this;
+
+        let action = thisForm.getAttribute('action');
+        let recaptcha = thisForm.getAttribute('data-recaptcha-site-key');
+        
+        if( ! action ) {
+          displayError(thisForm, 'The form action property is not set!')
+          return;
+        }
+        thisForm.querySelector('.loading').classList.add('d-block');
+        thisForm.querySelector('.error-message').classList.remove('d-block');
+        thisForm.querySelector('.sent-message').classList.remove('d-block');
+  
+        let formData = new FormData( thisForm );
+        if ( recaptcha ) {
+          if(typeof grecaptcha !== "undefined" ) {
+            grecaptcha.ready(function() {
+              try {
+                grecaptcha.execute(recaptcha, {action: 'php_email_form_submit'})
+                .then(token => {
+                  formData.set('recaptcha-response', token);
+                  php_email_form_submit(thisForm, action, formData);
+                })
+              } catch(error) {
+                displayError(thisForm, error)
+              }
+            });
+          } else {
+            displayError(thisForm, 'The reCaptcha javascript API url is not loaded!')
+          }
+        } else {
+          php_email_form_submit(thisForm, action, formData);
+          console.log(JSON.stringify(formData))
+        }
       }
+
+
+      
     });
   });
 
@@ -56,6 +72,7 @@
       headers: {'X-Requested-With': 'XMLHttpRequest'}
     })
     .then(response => {
+      console.log(response)
       if( response.ok ) {
         return response.text()
       } else {
@@ -64,7 +81,8 @@
     })
     .then(data => {
       thisForm.querySelector('.loading').classList.remove('d-block');
-      if (data.trim() == 'OK') {
+      console.log(data.trim())
+      if (data.trim().length == 0) {
         thisForm.querySelector('.sent-message').classList.add('d-block');
         thisForm.reset(); 
       } else {

@@ -6,16 +6,16 @@
             <h2>Formulario de registro
             </h2>
             <p>Rellene el formulario de inscripción con sus datos de presentación en la conferencia. No olvide adjuntar, además del formulario de inscripción, el comprobante de pago. Si tiene alguna pregunta o necesita información adicional, no dude en ponerse en contacto con nosotros en la dirección <a href="mailto:info@cboresearch.com">info@cboresearch.com</a> o visite la página de preguntas frecuentes (FAQs)</p>
+          <p><br>Todos los campos con *, son obligatorios</p>
           </div>
-  
-          <form action="forms/appointment.php" method="post" role="form" class="php-email-form">
+          <form method="POST" name="email_form_with_php" action="sendform.php" enctype="multipart/form-data" class="php-email-form"> 
             <div class="row">
               <div class="col-md-6 form-group">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Nombre y apellidos" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                <input type="text" name="name" class="form-control mandatory" id="name" placeholder="Nombre y apellidos *" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
                 <div class="validate"></div>
               </div>
               <div class="col-md-6 form-group mt-3 mt-md-0">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Tu Email" data-rule="email" data-msg="Please enter a valid email">
+                <input type="email" class="form-control mandatory" name="email" id="email" placeholder="Tu Email *" data-rule="email" data-msg="Please enter a valid email">
                 <div class="validate"></div>
               </div>
             
@@ -23,8 +23,8 @@
             <div class="row">
               
               <div class="col-md-6 form-group mt-3">
-                <select name="department" id="department" class="form-select">
-                  <option value="">Registro como:</option>
+                <select name="department" id="department" class="form-select mandatory">
+                  <option value="">Registro como: *</option>
                   <option value="doctorado"> Doctorado</option>
                   <option value="normal">Normal</option>
                 
@@ -32,20 +32,20 @@
                 <div class="validate"></div>
               </div>
               <div class="col-md-6 form-group mt-3 ">
-                <input type="text" name="name" class="form-control" id="name" placeholder="ID del resumen extendido aceptado" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                <input type="text" name="id_resumen" class="form-control mandatory" id="id_resumen" placeholder="ID del resumen extendido aceptado*" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
                 <div class="validate"></div>
               </div>
             </div>
             <div class="row">
                 <div class="col-md-6 form-group mt-3">
-                    <label>Prueba de pago</label>
-                    <input type="file">
+                    <label  for="uploaded_file">Prueba de pago * </label>
+                    <input  class="mandatory" type="file"  name="uploaded_file">
                     <div class="validate"></div>
                   </div>
            
                 <div class="col-md-6 form-group mt-3 ">
-                    <label>Prueba de estudiante</label>
-                    <input type="file">
+                    <label for="uploaded_file_2">Prueba de estudiante</label>
+                    <input type="file" name="uploaded_file_2">
                     <div class="validate"></div>
                   </div>
             </div>
